@@ -1,0 +1,18 @@
+<p>haz click en algun continente y observa la magia</p>
+<h1 *ngFor="let c of continents" (click)="getPaises(c)"> {{c.toUpperCase()}} </h1>
+<div class="container" *ngIf="!hayPaisSeleccionado">
+  <div *ngFor="let p of paises;index as i" class="container__country">
+    <h3>{{p.name.official}} </h3>
+    <img [src]="p.flags.png" [alt]="p.name.common" title="{{p.name.common}}">
+    <button (click)="getPais(i)" type="button">See more on console</button>
+  </div>
+</div>
+<div class="details" *ngIf="hayPaisSeleccionado">
+  <h2>Official name: {{paisSeleccionado.name.official}}</h2>
+  <img [src]="paisSeleccionado.flags.png" [alt]="paisSeleccionado.name.common" title="{{paisSeleccionado.name.common}}">
+  <p>Common name:{{paisSeleccionado.name.common}}</p>
+  <p>Area: {{paisSeleccionado.area}}</p>
+  <p>Region: {{paisSeleccionado.region}}</p>
+  <p>Status: {{paisSeleccionado.status}}</p>
+  <p>Population: {{paisSeleccionado.population}}</p>
+</div>
