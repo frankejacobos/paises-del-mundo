@@ -1,19 +1,18 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { Pais } from './Pais';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PaisesService {
-  urlBase: string = '';
   paises: any[] = [];
-  constructor(private httpClient: HttpClient) {
-    this.urlBase = 'https://restcountries.com/v3.1/';
-  }
-  getPaises(continent: string): Observable<any[]> {
-    let temp = this.httpClient.get<any[]>(`${this.urlBase}region/${continent}`);
-    this.urlBase = 'https://restcountries.com/v3.1/';
-    return temp;
+  constructor(private httpClient: HttpClient) {}
+  getPaises(continent: string) {
+    return this.httpClient.get<Pais[]>(
+      environment.urlBase + 'region/' + continent
+    );
   }
 }
